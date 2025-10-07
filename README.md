@@ -119,7 +119,30 @@ GOOGLE_API_KEY=your_google_api_key_here
 
 # Optional
 ADK_DEBUG=false
+IQ_API_KEY=your_iq_api_key_if_using_logs
+IQ_API_BASE_URL=https://app.iqai.com
 ```
+
+## IQ Market Data Agent
+
+The bot includes an `iq_market_agent` that can fetch market and metadata from IQ AI.
+
+Capabilities (see IQ AI API Docs: https://app.iqai.com/docs):
+
+- List agents with filters
+- Top agents by market cap/holders/inferences
+- Agent info by address or ticker
+- Agent stats (extended stats with address)
+- Holdings for a wallet
+- Prices (ETH/FRAX/ALL)
+- Logs (get) 
+
+Examples you can ask the bot:
+
+- "Show top 5 agents by holders"
+- "Get stats for address 0x... with extended stats"
+- "What is the price of ETH?"
+- "List my holdings for address 0x... on chain 252"
 
 ## About MCP & Sampling
 

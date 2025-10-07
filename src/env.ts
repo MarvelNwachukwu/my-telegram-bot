@@ -16,6 +16,7 @@ export const envSchema = z.object({
 	GOOGLE_API_KEY: z.string(),
 	TELEGRAM_BOT_TOKEN: z.string(),
 	LLM_MODEL: z.string().default("gemini-2.5-flash"),
+	IQ_API_BASE_URL: z.string().url().default("https://app.iqai.com"),
 });
 
 /**

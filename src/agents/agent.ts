@@ -4,6 +4,8 @@ import { AgentBuilder, createDatabaseSessionService } from "@iqai/adk";
 import { env } from "../env";
 import { getJokeAgent } from "./joke-agent/agent";
 import { getWeatherAgent } from "./weather-agent/agent";
+import { getIqMarketAgent } from "./iq-market-agent/agent";
+import endent from "endent";
 
 /**
  * Creates and configures the root agent for the telegram bot.
@@ -17,19 +19,33 @@ import { getWeatherAgent } from "./weather-agent/agent";
 export const getRootAgent = () => {
 	const jokeAgent = getJokeAgent();
 	const weatherAgent = getWeatherAgent();
+    const iqMarketAgent = getIqMarketAgent();
 
 	return AgentBuilder.create("root_agent")
 		.withDescription(
-			"Root agent that delegates tasks to sub-agents for telling jokes and providing weather information.",
+			"Root agent that delegates tasks to sub-agents for jokes, weather, and IQ market data.",
 		)
 		.withInstruction(
-			"Use the joke sub-agent for humor requests and the weather sub-agent for weather-related queries. Route user requests to the appropriate sub-agent.",
+			endent`
+				Use the joke sub-agent for humor requests.
+				Use the weather sub-agent for weather-related queries.
+				Use the IQ market sub-agent for agent market data, including:
+				- lists
+				- top agents
+				- info
+				- stats
+				- holdings
+				- prices
+				- logs
+		
+				You can also fetch the price of IQ and ETH when prompted using the IQ price endpoint.
+			`,
 		)
 		.withModel(env.LLM_MODEL)
 		// .withSessionService(
 		// 	createDatabaseSessionService(getSqliteConnectionString("telegram_bot")),
 		// )
-		.withSubAgents([jokeAgent, weatherAgent])
+		.withSubAgents([jokeAgent, weatherAgent, iqMarketAgent])
 		.build();
 };
 

@@ -15,7 +15,15 @@
 		"type": "git",
 		"url": "git+https://github.com/IQAICOM/adk-telegram-bot.git"
 	},
-	"keywords": ["ai", "agent", "mcp", "adk-ts", "IQAI", "telegram", "bot"],
+	"keywords": [
+		"ai",
+		"agent",
+		"mcp",
+		"adk-ts",
+		"IQAI",
+		"telegram",
+		"bot"
+	],
 	"author": "IQAI",
 	"license": "MIT",
 	"bugs": {
@@ -25,6 +33,7 @@
 	"dependencies": {
 		"@iqai/adk": "^0.3.2",
 		"dotenv": "^17.2.2",
+		"endent": "^2.1.0",
 		"zod": "^4.1.5"
 	},
 	"devDependencies": {

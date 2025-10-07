@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.gitignore
+Dockerfile*
+.dockerignore
+.env
+npm-debug.log
+# pnpm-lock.yaml

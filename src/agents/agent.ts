@@ -6,6 +6,7 @@ import { getJokeAgent } from "./joke-agent/agent";
 import { getWeatherAgent } from "./weather-agent/agent";
 import { getIqMarketAgent } from "./iq-market-agent/agent";
 import endent from "endent";
+import { getIqTransactionAgent } from "./iq-transaction-agent/agent";
 
 /**
  * Creates and configures the root agent for the telegram bot.
@@ -19,7 +20,8 @@ import endent from "endent";
 export const getRootAgent = () => {
 	const jokeAgent = getJokeAgent();
 	const weatherAgent = getWeatherAgent();
-    const iqMarketAgent = getIqMarketAgent();
+	const iqMarketAgent = getIqMarketAgent();
+	const iqTransactionAgent = getIqTransactionAgent();
 
 	return AgentBuilder.create("root_agent")
 		.withDescription(
@@ -37,7 +39,15 @@ export const getRootAgent = () => {
 				- holdings
 				- prices
 				- logs
-		
+				
+				Use the IQ transaction sub-agent for transaction data, including:
+				- all transactions
+				- transaction history
+				- transaction details
+				- transaction analysis
+				- transaction prediction
+				- transaction recommendation
+
 				You can also fetch the price of IQ and ETH when prompted using the IQ price endpoint.
 			`,
 		)
@@ -45,7 +55,7 @@ export const getRootAgent = () => {
 		// .withSessionService(
 		// 	createDatabaseSessionService(getSqliteConnectionString("telegram_bot")),
 		// )
-		.withSubAgents([jokeAgent, weatherAgent, iqMarketAgent])
+		.withSubAgents([jokeAgent, weatherAgent, iqMarketAgent, iqTransactionAgent])
 		.build();
 };
 

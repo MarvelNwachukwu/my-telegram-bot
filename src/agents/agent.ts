@@ -40,13 +40,13 @@ export const getRootAgent = () => {
 				- prices
 				- logs
 				
-				Use the IQ transaction sub-agent for transaction data, including:
-				- all transactions
-				- transaction history
-				- transaction details
-				- transaction analysis
-				- transaction prediction
-				- transaction recommendation
+				Use the IQ transaction sub-agent for advanced transaction analysis, including:
+				- Most traded agents in the last 7 days
+				- Complete transaction history with filtering
+				- Transaction metrics and analytics
+				- Market sentiment analysis
+				- Next-action predictions based on trading patterns
+				- Comprehensive trade analysis for investment decisions
 
 				You can also fetch the price of IQ and ETH when prompted using the IQ price endpoint.
 			`,

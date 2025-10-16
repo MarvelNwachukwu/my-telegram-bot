@@ -2,10 +2,9 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { AgentBuilder, createDatabaseSessionService } from "@iqai/adk";
 import { env } from "../env";
-import { getJokeAgent } from "./joke-agent/agent";
-import { getWeatherAgent } from "./weather-agent/agent";
 import { getIqMarketAgent } from "./iq-market-agent/agent";
 import endent from "endent";
+import { getIqTransactionAgent } from "./iq-transaction-agent/agent";
 
 /**
  * Creates and configures the root agent for the telegram bot.
@@ -17,9 +16,8 @@ import endent from "endent";
  * @returns The fully constructed root agent instance, ready to process and route user requests to the appropriate sub-agent.
  */
 export const getRootAgent = () => {
-	const jokeAgent = getJokeAgent();
-	const weatherAgent = getWeatherAgent();
-    const iqMarketAgent = getIqMarketAgent();
+	const iqMarketAgent = getIqMarketAgent();
+	const iqTransactionAgent = getIqTransactionAgent();
 
 	return AgentBuilder.create("root_agent")
 		.withDescription(
@@ -37,7 +35,15 @@ export const getRootAgent = () => {
 				- holdings
 				- prices
 				- logs
-		
+				
+				Use the IQ transaction sub-agent for advanced transaction analysis, including:
+				- Most traded agents in the last 7 days
+				- Complete transaction history with filtering
+				- Transaction metrics and analytics
+				- Market sentiment analysis
+				- Next-action predictions based on trading patterns
+				- Comprehensive trade analysis for investment decisions
+
 				You can also fetch the price of IQ and ETH when prompted using the IQ price endpoint.
 			`,
 		)
@@ -45,7 +51,7 @@ export const getRootAgent = () => {
 		// .withSessionService(
 		// 	createDatabaseSessionService(getSqliteConnectionString("telegram_bot")),
 		// )
-		.withSubAgents([jokeAgent, weatherAgent, iqMarketAgent])
+		.withSubAgents([iqMarketAgent, iqTransactionAgent])
 		.build();
 };
 

@@ -2,8 +2,6 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { AgentBuilder, createDatabaseSessionService } from "@iqai/adk";
 import { env } from "../env";
-import { getJokeAgent } from "./joke-agent/agent";
-import { getWeatherAgent } from "./weather-agent/agent";
 import { getIqMarketAgent } from "./iq-market-agent/agent";
 import endent from "endent";
 import { getIqTransactionAgent } from "./iq-transaction-agent/agent";
@@ -18,8 +16,6 @@ import { getIqTransactionAgent } from "./iq-transaction-agent/agent";
  * @returns The fully constructed root agent instance, ready to process and route user requests to the appropriate sub-agent.
  */
 export const getRootAgent = () => {
-	const jokeAgent = getJokeAgent();
-	const weatherAgent = getWeatherAgent();
 	const iqMarketAgent = getIqMarketAgent();
 	const iqTransactionAgent = getIqTransactionAgent();
 
@@ -55,7 +51,7 @@ export const getRootAgent = () => {
 		// .withSessionService(
 		// 	createDatabaseSessionService(getSqliteConnectionString("telegram_bot")),
 		// )
-		.withSubAgents([jokeAgent, weatherAgent, iqMarketAgent, iqTransactionAgent])
+		.withSubAgents([iqMarketAgent, iqTransactionAgent])
 		.build();
 };
 
